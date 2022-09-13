@@ -43,7 +43,7 @@ class HelloWorld : MonoBehaviour
         Debug.Log(sss);
 
         int m = 22 % 7; //1
-        float mf = 12,34 % 5; //2.34f
+        float mf = 12.34f % 5; //2.34f
 
         bool bbb1 = true;
         bool bbb2 = false;
