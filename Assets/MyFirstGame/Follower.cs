@@ -6,6 +6,14 @@ class Follower : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] AnimationCurve speedOverDistance;
 
+    [SerializeField] new Rigidbody rigidbody;
+
+    private void OnValidate()
+    {
+        if (rigidbody == null)
+            rigidbody = GetComponent<Rigidbody>();
+    }
+
     //[SerializeField, FormerlySerializedAs("")]
     void Update()
     {
@@ -29,12 +37,20 @@ class Follower : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, target.position);
         float speed = speedOverDistance.Evaluate(distance);
+
+        /*
         float maxStep = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(pos, targetPoint, maxStep);
+        */
+
+        Vector3 direction = targetPoint - pos;
+        direction.Normalize();
+
+        rigidbody.velocity = direction * speed;
 
         if (targetPoint != pos)
         {
         transform.rotation = Quaternion.LookRotation(targetPoint - pos);
         }
-}
+    }
 }

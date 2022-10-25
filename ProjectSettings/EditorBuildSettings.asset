@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/ExplosionScene.unity
+    guid: 39f978dcb39ea2f44bc2affe9c82e099
   m_configObjects: {}
