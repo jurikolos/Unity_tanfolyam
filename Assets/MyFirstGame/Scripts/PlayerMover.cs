@@ -5,6 +5,8 @@ class PlayerMover : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float angularSpeed = 180;
 
+    [SerializeField] Animator animator;
+
     void Update()
     {
         // Inputkezelés
@@ -37,12 +39,21 @@ class PlayerMover : MonoBehaviour
 
         transform.position += velocity * Time.deltaTime;
 
-        if (velocity != Vector3.zero)
+        bool isRunning = velocity != Vector3.zero;
+
+        animator.SetBool("isRunning", isRunning);
+
+        if (isRunning)
         {
             Quaternion targetRot = Quaternion.LookRotation(velocity);
 
             transform.rotation = 
                 Quaternion.RotateTowards(transform.rotation, targetRot, angularSpeed * Time.deltaTime);
         }
+    }
+
+    public void StepDown()
+    {
+        Debug.Log("Step");
     }
 }
